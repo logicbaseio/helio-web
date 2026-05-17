@@ -172,6 +172,10 @@ export default function HelioLandingPage() {
           <div className="terminal-line">
             <span className="prompt">$</span>
             <span className="typed">helio agent run --goal "grow non-brand clicks +45%"</span>
+            <span className="typed-mobile" aria-hidden="true">
+              <span className="typed-mobile-line line-1">helio agent run --goal</span>
+              <span className="typed-mobile-line line-2">"grow non-brand clicks +45%"</span>
+            </span>
           </div>
         </div>
 

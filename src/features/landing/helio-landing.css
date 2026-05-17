@@ -39,6 +39,7 @@ body { margin: 0; background: radial-gradient(circle at 10% 5%, rgba(113, 155, 3
 .terminal-line { margin-top: 1.2rem; border: 1px solid var(--line); padding: 0.7rem; display: flex; gap: 0.55rem; background: #050707; }
 .prompt { color: var(--accent); }
 .typed { white-space: nowrap; overflow: hidden; width: 0; border-right: 2px solid var(--accent); animation: typing 4.8s steps(48, end) infinite, blink 0.8s step-end infinite; }
+.typed-mobile { display: none; }
 @keyframes typing { 0%, 20% { width: 0; } 55%, 85% { width: 51ch; } 100% { width: 0; } }
 @keyframes blink { 50% { border-color: transparent; } }
 
@@ -280,18 +281,41 @@ body { margin: 0; background: radial-gradient(circle at 10% 5%, rgba(113, 155, 3
   .hero h1 { max-width: 100%; }
   .terminal-line {
     align-items: flex-start;
+    flex-wrap: nowrap;
   }
-  .typed {
-    width: auto;
-    white-space: normal;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-    border-right: 0;
-    animation: none;
-    display: block;
+  .typed { display: none; }
+  .typed-mobile {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    max-width: calc(100% - 1.2rem);
     line-height: 1.45;
-    max-width: 100%;
+  }
+  .typed-mobile-line {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    border-right: 2px solid var(--accent);
+  }
+  .typed-mobile-line.line-1 {
+    animation: typingLine1 3.4s steps(25, end) infinite, blink 0.8s step-end infinite;
+  }
+  .typed-mobile-line.line-2 {
+    animation: typingLine2 3.4s steps(28, end) infinite, blink 0.8s step-end infinite;
   }
   .checkbox-grid { grid-template-columns: 1fr; }
   .end-cta { padding: 1.5rem 0.75rem; }
+}
+
+@keyframes typingLine1 {
+  0%, 20% { width: 0; }
+  42%, 78% { width: 21ch; }
+  100% { width: 0; }
+}
+
+@keyframes typingLine2 {
+  0%, 42% { width: 0; }
+  62%, 90% { width: 26ch; }
+  100% { width: 0; }
 }
