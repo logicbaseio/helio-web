@@ -175,15 +175,13 @@ export default function HelioLandingPage() {
           </div>
         </div>
 
-        <aside className="orbit-panel" aria-label="HELIO orbital engine animation">
-          <div className="orbit-core" />
-          <div className="orbit-ring ring-a" />
-          <div className="orbit-ring ring-b" />
-          <div className="orbit-ring ring-c" />
-          <div className="orbit-node node-a" />
-          <div className="orbit-node node-b" />
-          <div className="orbit-node node-c" />
-          <p className="orbit-caption">ORBITAL SEO ENGINE / LIVE AUTONOMY LOOP</p>
+        <aside className="orbit-panel mascot-panel" aria-label="HELIO mascot animation">
+          <div className="mascot-glow" />
+          <img src="/helio-mascot-cutout.png" alt="HELIO Mascot" className="hero-mascot" />
+          <div className="mascot-action action-a">SCANNING SERP</div>
+          <div className="mascot-action action-b">PATCHING PAGES</div>
+          <div className="mascot-action action-c">SHIPPING MISSIONS</div>
+          <p className="orbit-caption">HELIO MASCOT / LIVE AUTONOMY LOOP</p>
         </aside>
       </main>
 

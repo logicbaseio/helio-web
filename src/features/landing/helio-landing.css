@@ -43,19 +43,78 @@ body { margin: 0; background: radial-gradient(circle at 10% 5%, rgba(113, 155, 3
 @keyframes blink { 50% { border-color: transparent; } }
 
 .orbit-panel { border: 1px solid var(--line); position: relative; min-height: 370px; background: radial-gradient(circle at 50% 50%, rgba(196, 245, 58, 0.09), transparent 55%); overflow: hidden; }
-.orbit-core { width: 18px; height: 18px; border-radius: 999px; background: var(--accent); box-shadow: 0 0 24px rgba(196, 245, 58, 0.7); position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%); }
-.orbit-ring { border: 1px solid rgba(196, 245, 58, 0.3); border-radius: 999px; position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%); }
-.ring-a { width: 110px; height: 110px; }
-.ring-b { width: 190px; height: 190px; animation: spin 8s linear infinite reverse; }
-.ring-c { width: 280px; height: 280px; animation: spin 15s linear infinite; }
-.orbit-node { width: 10px; height: 10px; border-radius: 999px; background: #eef9d3; position: absolute; left: 50%; top: 50%; }
-.node-a { transform: rotate(0deg) translateX(55px); transform-origin: 0 0; animation: orbit-a 6s linear infinite; }
-.node-b { transform: rotate(130deg) translateX(95px); transform-origin: 0 0; animation: orbit-b 9s linear infinite; }
-.node-c { transform: rotate(210deg) translateX(140px); transform-origin: 0 0; animation: orbit-c 12s linear infinite reverse; }
-@keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
-@keyframes orbit-a { to { transform: rotate(360deg) translateX(55px); } }
-@keyframes orbit-b { to { transform: rotate(490deg) translateX(95px); } }
-@keyframes orbit-c { to { transform: rotate(570deg) translateX(140px); } }
+.mascot-panel { display: grid; place-items: center; }
+.mascot-panel::before,
+.mascot-panel::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 72px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(196, 245, 58, 0.85), transparent);
+  opacity: 0;
+  animation: gestureFlash 2.8s ease-in-out infinite;
+}
+.mascot-panel::before { left: 14%; animation-delay: 0.2s; }
+.mascot-panel::after { right: 14%; animation-delay: 1.5s; }
+.mascot-glow {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196, 245, 58, 0.2), rgba(196, 245, 58, 0));
+  animation: mascotPulse 3.2s ease-in-out infinite;
+}
+.hero-mascot {
+  width: min(78%, 360px);
+  image-rendering: pixelated;
+  position: relative;
+  z-index: 2;
+  transform-origin: 50% 88%;
+  animation: mascotGesture 3.1s ease-in-out infinite, mascotGlitch 4.4s steps(1, end) infinite;
+}
+.mascot-action {
+  position: absolute;
+  font-size: 0.7rem;
+  color: #d4f387;
+  border: 1px solid #36513a;
+  padding: 0.24rem 0.45rem;
+  background: rgba(7, 15, 8, 0.82);
+  animation: actionBlink 1.9s steps(2, end) infinite;
+  z-index: 3;
+}
+.action-a { top: 14%; left: 8%; }
+.action-b { top: 26%; right: 8%; animation-delay: 0.45s; }
+.action-c { bottom: 17%; right: 12%; animation-delay: 0.9s; }
+@keyframes mascotBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes mascotGesture {
+  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+  18% { transform: translateY(-6px) rotate(-3deg) scale(1.01); }
+  36% { transform: translateY(0) rotate(2.4deg) scale(1); }
+  54% { transform: translateY(-9px) rotate(-1.5deg) scale(1.02); }
+  72% { transform: translateY(0) rotate(1.8deg) scale(0.995); }
+}
+@keyframes mascotPulse {
+  0%, 100% { opacity: 0.4; transform: scale(0.95); }
+  50% { opacity: 0.7; transform: scale(1.02); }
+}
+@keyframes mascotGlitch {
+  0%, 88%, 100% { filter: none; }
+  90% { filter: hue-rotate(-18deg) brightness(1.08); }
+  92% { filter: contrast(1.2) saturate(1.2); }
+}
+@keyframes actionBlink {
+  0%, 100% { opacity: 0.72; }
+  50% { opacity: 1; }
+}
+@keyframes gestureFlash {
+  0%, 100% { opacity: 0; transform: translateX(0); }
+  35% { opacity: 0.75; transform: translateX(10px); }
+  55% { opacity: 0.15; transform: translateX(18px); }
+}
 .orbit-caption { position: absolute; bottom: 0.8rem; left: 0.8rem; margin: 0; color: var(--muted); font-size: 0.75rem; }
 
 .terminal-story { margin-top: 1rem; display: grid; gap: 1rem; }
@@ -219,6 +278,20 @@ body { margin: 0; background: radial-gradient(circle at 10% 5%, rgba(113, 155, 3
 @media (max-width: 720px) {
   .topbar { grid-template-columns: 1fr; justify-items: start; }
   .hero h1 { max-width: 100%; }
+  .terminal-line {
+    align-items: flex-start;
+  }
+  .typed {
+    width: auto;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    border-right: 0;
+    animation: none;
+    display: block;
+    line-height: 1.45;
+    max-width: 100%;
+  }
   .checkbox-grid { grid-template-columns: 1fr; }
   .end-cta { padding: 1.5rem 0.75rem; }
 }
